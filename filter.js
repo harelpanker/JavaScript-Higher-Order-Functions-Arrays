@@ -12,6 +12,22 @@ const companies= [
   
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 
+// ---------Foreach---------//
+console.log("=======================================");
+console.log("Foreach:");
+// Old JS
+for(let i = 0; i < companies.length; i++) {
+    console.log(companies[i].name);
+}
+// New JS
+companies.forEach((companie) => {
+    console.log(`${companie.start} - ${companie.end}`);
+})
+ages.forEach(age => {
+    if(age % 2 == 1) {
+        console.log(age);
+    }
+})
 
 // ---------Filter---------//
 console.log("=======================================");
@@ -143,3 +159,34 @@ console.log(sortedAgeDown);
 // ---------Reduce---------//
 console.log("=======================================");
 console.log("Reduce:");
+
+// 1)
+// Add all the ages together:
+let ageSum = ages.reduce((total, age) => {
+    return total + age;
+}, 0)
+// And the same:
+// let ageSum = ages.reduce((total, age) => total + age, 0)
+console.log(`Add all the ages together:`)
+console.log(ageSum);
+
+// 2)
+// Add all the years of all the companies
+let companiesYears = companies.reduce((total, years) => {
+    return total + (years.end - years.start);
+}, 0)
+// And the same:
+// let companiesYears = companies.reduce((total, years) => total + (years.end - years.start), 0);
+console.log(`Add all the years of all the companies:`);
+console.log(companiesYears);
+
+
+
+// Combine Methods:
+const combined = ages
+  .map(age => age * 2)
+  .filter(age => age >= 40)
+  .sort((a, b) => a - b)
+  .reduce((a, b) => a + b, 0);
+
+console.log(combined);
